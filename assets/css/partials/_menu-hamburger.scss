@@ -1,0 +1,117 @@
+/*
+* Menu-Hamburger
+* Author: Team-Six
+* Version V.0.8
+*/
+
+#menuToggle {
+    @include noselect();
+    position: fixed;
+    z-index: 1;
+
+    a {
+        text-decoration: none;
+        color: $color-text-white;
+        margin-left: 20px;
+
+        &:hover {
+            color: $color-orange;
+            text-decoration: none;
+        }
+    }
+
+    input {
+        display: block;
+        
+        width: 32px;
+        height: 32px;
+        position: absolute;
+
+        opacity: 0;
+        z-index: 3;
+
+        cursor: pointer;
+
+        &:checked~ul {
+            transform: none;
+            text-decoration: none;
+        }
+
+        &:checked~span {
+            background: $color-orange;
+            display: block;
+            opacity: 1;
+            transform: rotate(45deg) translate(-0.5px, -2px);
+
+            @media #{$smartphone-portrait} {
+                transform: rotate(45deg) translate(-2px, -1px);
+            }
+
+            &:nth-child(3) {
+                transform: rotate(-45deg) translate(-3.5px, 2px);
+
+                @media #{$smartphone-portrait} {
+                    transform: rotate(-45deg) translate(-4.5px, 0.5px);
+                }
+            }
+            &:nth-last-child(2) {
+                opacity: 0;
+                transform: rotate(0deg) scale(0.2, 0.2);
+            }
+        }
+    }
+    span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin-bottom: 4px;
+
+        z-index: 2;
+        position: relative;
+        
+        background: $color-text;
+        border-radius: 3px;
+        
+        text-align: center;
+        transform-origin: 4px 0px;
+        transition: 
+            transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), 
+            background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), 
+            opacity 0.55s ease;
+        
+        &:nth-last-child(3) {
+            transform-origin: 10% 0%;
+        }
+    }
+}
+
+#menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    // margin: -100px 0 0 -50px;
+    padding: 50px;
+    padding-top: 125px;
+
+    background: rgba(0, 0, 0, 0.7);
+    list-style-type: none;
+    transform-origin: 0% 0%;
+    transform: translate(-100%, 0);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+    
+    li {
+        padding: 8px 0;
+        font-size: 2em;
+    }
+    
+    @media #{$smartphone-landscape}{
+        height: 100vh;
+    }
+}
+
+#TB_window {
+    form {
+        text-align: center;
+        margin-top: 150px;
+    }
+}
